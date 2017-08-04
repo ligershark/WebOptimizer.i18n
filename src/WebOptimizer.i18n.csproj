@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.79-beta" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.84-beta" />
   </ItemGroup>
 
 </Project>

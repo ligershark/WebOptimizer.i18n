@@ -39,11 +39,11 @@ namespace WebOptimizer.i18n
         public Task ExecuteAsync(IAssetContext config)
         {
             _stringProvider = config.HttpContext.RequestServices.GetService<IStringLocalizer<T>>();
-            var content = new Dictionary<string, string>();
+            var content = new Dictionary<string, byte[]>();
 
             foreach (string route in config.Content.Keys)
             {
-                content[route] = Localize(config.Content[route]);
+                content[route] = Localize(config.Content[route].AsString()).AsByteArray();
             }
 
             config.Content = content;
