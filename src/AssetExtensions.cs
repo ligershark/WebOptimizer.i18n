@@ -31,5 +31,26 @@ namespace WebOptimizer.i18n
 
             return asset;
         }
+
+        /// <summary>
+        /// Localizes the specified files.
+        /// </summary>
+        /// <param name="pipeline">The pipeline object.</param>
+        /// <param name="contentType">The content type of the response. Example: "text/css; charset=UTF-8"</param>
+        /// <param name="sourceFiles">A list of relative file names of the sources to localize.</param>
+        public static IEnumerable<IAsset> LocalizeFiles<T>(this IAssetPipeline pipeline, string contentType, params string[] sourceFiles)
+        {
+            var list = new List<IAsset>();
+
+            foreach (string file in sourceFiles)
+            {
+                IAsset asset = pipeline.AddBundle(file, contentType, new[] { file })
+                         .Localize<T>();
+
+                list.Add(asset);
+            }
+
+            return list;
+        }
     }
 }
