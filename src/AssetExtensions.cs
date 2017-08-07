@@ -40,17 +40,8 @@ namespace WebOptimizer.i18n
         /// <param name="sourceFiles">A list of relative file names of the sources to localize.</param>
         public static IEnumerable<IAsset> LocalizeFiles<T>(this IAssetPipeline pipeline, string contentType, params string[] sourceFiles)
         {
-            var list = new List<IAsset>();
-
-            foreach (string file in sourceFiles)
-            {
-                IAsset asset = pipeline.AddBundle(file, contentType, new[] { file })
-                         .Localize<T>();
-
-                list.Add(asset);
-            }
-
-            return list;
+            return pipeline.AddFiles(contentType, sourceFiles)
+                           .Localize<T>();
         }
     }
 }
