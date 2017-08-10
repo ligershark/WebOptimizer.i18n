@@ -36,7 +36,7 @@ namespace WebOptimizer.i18n
         /// <summary>
         /// Executes the processor on the specified configuration.
         /// </summary>
-        public Task ExecuteAsync(IAssetContext config)
+        public Task ExecuteAsync(IAssetContext config, WebOptimizerOptions options)
         {
             _stringProvider = config.HttpContext.RequestServices.GetService<IStringLocalizer<T>>();
             var content = new Dictionary<string, byte[]>();
