@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.Net.Http.Headers;
 
 namespace WebOptimizer.i18n
 {
@@ -36,7 +38,7 @@ namespace WebOptimizer.i18n
         /// <summary>
         /// Executes the processor on the specified configuration.
         /// </summary>
-        public Task ExecuteAsync(IAssetContext config, WebOptimizerOptions options)
+        public Task ExecuteAsync(IAssetContext config)
         {
             _stringProvider = config.HttpContext.RequestServices.GetService<IStringLocalizer<T>>();
             var content = new Dictionary<string, byte[]>();
@@ -44,6 +46,11 @@ namespace WebOptimizer.i18n
             foreach (string route in config.Content.Keys)
             {
                 content[route] = Localize(config.Content[route].AsString()).AsByteArray();
+            }
+
+            if (config.Content.Keys.Any())
+            {
+                config.HttpContext.Response.Headers[HeaderNames.Vary] = "Accept-Language";
             }
 
             config.Content = content;

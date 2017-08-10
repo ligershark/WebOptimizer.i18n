@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebOptimizer.i18n.Sample", "sample\WebOptimizer.i18n.Sample.csproj", "{C74BAED5-E839-42B0-870E-26A74303B800}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8FF47028-9F5F-407A-9A0F-9C8A6E7B685A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF47028-9F5F-407A-9A0F-9C8A6E7B685A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF47028-9F5F-407A-9A0F-9C8A6E7B685A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74BAED5-E839-42B0-870E-26A74303B800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74BAED5-E839-42B0-870E-26A74303B800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74BAED5-E839-42B0-870E-26A74303B800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74BAED5-E839-42B0-870E-26A74303B800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
