@@ -5,6 +5,7 @@
 
 This package adds localization (i18n) support to the [LigerShark.WebOptimizer](https://github.com/ligershark/WebOptimizer) ASP.NET Core pipeline.
 
---------------------------------------
+
+<br>
 
 Description coming soon...
