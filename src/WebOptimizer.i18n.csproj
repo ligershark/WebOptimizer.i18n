@@ -19,7 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.115-beta" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="1.0.121-beta" />
+    <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
