@@ -2,6 +2,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebOptimizer.i18n.Test
 {
@@ -15,7 +16,7 @@ namespace WebOptimizer.i18n.Test
             asset.Localize<AssetExtensionsTest>();
 
             Assert.Equal(1, asset.Processors.Count);
-            Assert.True(asset.Processors.Any(p => p is Localizer<AssetExtensionsTest>));
+            Assert.True(asset.Processors.Any(p => p is LocalizerProcessor<AssetExtensionsTest>));
         }
 
         [Fact]
@@ -28,7 +29,7 @@ namespace WebOptimizer.i18n.Test
             foreach (IAsset asset in assets)
             {
                 Assert.Equal(1, asset.Processors.Count);
-                Assert.True(asset.Processors.Any(p => p is Localizer<AssetExtensionsTest>));
+                Assert.True(asset.Processors.Any(p => p is LocalizerProcessor<AssetExtensionsTest>));
             }
         }
 

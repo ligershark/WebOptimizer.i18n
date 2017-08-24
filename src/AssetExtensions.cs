@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using WebOptimizer;
+using WebOptimizer.i18n;
 
-namespace WebOptimizer.i18n
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Extension methods for <see cref="IAssetPipeline"/>.
@@ -25,7 +27,7 @@ namespace WebOptimizer.i18n
         /// </summary>
         public static IAsset Localize<T>(this IAsset asset)
         {
-            var localizer = new Localizer<T>();
+            var localizer = new LocalizerProcessor<T>();
 
             asset.Processors.Add(localizer);
 

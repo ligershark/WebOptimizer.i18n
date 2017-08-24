@@ -16,7 +16,7 @@ namespace WebOptimizer.i18n
     /// Compiles Sass files
     /// </summary>
     /// <seealso cref="WebOptimizer.IProcessor" />
-    public class Localizer<T> : IProcessor
+    public class LocalizerProcessor<T> : IProcessor
     {
         private IStringLocalizer _stringProvider;
 
