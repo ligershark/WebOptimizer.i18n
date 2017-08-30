@@ -13,7 +13,7 @@ using Microsoft.Net.Http.Headers;
 namespace WebOptimizer.i18n
 {
     /// <summary>
-    /// Replaces delimited arguments with values from resource files
+    /// Replaces delimited arguments with values from resource files using the ASP.NET localization framework
     /// </summary>
     /// <seealso cref="WebOptimizer.IProcessor" />
     public class LocalizerProcessor<T> : IProcessor
