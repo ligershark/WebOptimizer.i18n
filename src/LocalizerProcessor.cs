@@ -60,9 +60,11 @@ namespace WebOptimizer.i18n
 
         private string Localize(string document)
         {
-            var sb = new StringBuilder();
             const char beginArgChar = '{';
             const char endArgChar = '}';
+
+            StringBuilder sb = new StringBuilder();
+            int potentialArgBegin = -1;
 
             int pos = 0;
             int len = document.Length;
@@ -82,6 +84,9 @@ namespace WebOptimizer.i18n
                         //Is it the escape sequence?
                         if (pos < len && document[pos] == beginArgChar)
                         {
+                            //Keep track of where it started
+                            potentialArgBegin = pos - 1;
+
                             //Advance to argument hole parameter
                             pos++;
                             break;
@@ -107,6 +112,7 @@ namespace WebOptimizer.i18n
                     if (ch == endArgChar)
                     {
                         pos++;
+
                         if (document[pos] == endArgChar)
                         {
                             argHoleClosed = true;
@@ -124,13 +130,17 @@ namespace WebOptimizer.i18n
 
                 if (!argHoleClosed)
                 {
-                    InvalidDocFormat(param);
+                    //Wasn't a valid argument hole, put it back as it was and continue
+                    NotValidStringArgument(document, sb, potentialArgBegin, paramLen);
+                    continue;
                 }
 
                 LocalizedString str = _stringProvider.GetString(param);
                 if (str.ResourceNotFound)
                 {
-                    throw new InvalidOperationException($"No value found for \"{str.Name}\"");
+                    //Put it back and continue
+                    NotValidStringArgument(document, sb, potentialArgBegin, paramLen);
+                    continue;
                 }
                 sb.Append(str.Value);
             }
@@ -138,14 +148,15 @@ namespace WebOptimizer.i18n
             return sb.ToString();
         }
 
+        private static void NotValidStringArgument(string document, StringBuilder sb, int potentialArgBegin, int paramLen)
+        {
+            sb.Append(document.Substring(potentialArgBegin, paramLen + 4));
+        }
+
         private void InvalidDocFormat()
         {
             throw new InvalidOperationException("Document not correctly formatted");
         }
 
-        private void InvalidDocFormat(string param)
-        {
-            throw new InvalidOperationException($"{param} argument not correctly terminated (did you forget a '}}'?)");
-        }
     }
 }
