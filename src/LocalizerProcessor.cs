@@ -13,7 +13,7 @@ using Microsoft.Net.Http.Headers;
 namespace WebOptimizer.i18n
 {
     /// <summary>
-    /// Compiles Sass files
+    /// Replaces delimited arguments with values from resource files
     /// </summary>
     /// <seealso cref="WebOptimizer.IProcessor" />
     public class LocalizerProcessor<T> : IProcessor
