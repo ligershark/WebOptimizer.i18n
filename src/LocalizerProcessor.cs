@@ -135,14 +135,22 @@ namespace WebOptimizer.i18n
                     continue;
                 }
 
-                LocalizedString str = _stringProvider.GetString(param);
-                if (str.ResourceNotFound)
+                try
                 {
-                    //Put it back and continue
-                    NotValidStringArgument(document, sb, potentialArgBegin, paramLen);
-                    continue;
+                    LocalizedString str = _stringProvider.GetString(param);
+                    if (str.ResourceNotFound)
+                    {
+                        //Put it back and continue
+                        NotValidStringArgument(document, sb, potentialArgBegin, paramLen);
+                        continue;
+                    }
+                    sb.Append(str.Value);
                 }
-                sb.Append(str.Value);
+                //This occurs if the user didn't specify AddViewLocalization in Startup.cs
+                catch (ArgumentNullException ex)
+                {
+                    throw new ArgumentNullException(ex.Message + ". Did you forget to call AddViewLocalization?");
+                }
             }
 
             return sb.ToString();
